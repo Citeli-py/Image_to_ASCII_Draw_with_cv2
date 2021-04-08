@@ -1,9 +1,12 @@
+#@-------------------------------------------@
+#| Autor: Matheus Citeli / Github: Citeli-py |
+#@-------------------------------------------@
+
 import cv2, os
 import numpy as np
 
 def imageprepare(frame, sizeh, sizev):
     img = cv2.imread(frame,0)
-    #img = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     img = cv2.resize(img, (sizeh, sizev))
     return img
 
