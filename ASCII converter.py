@@ -5,33 +5,36 @@
 import cv2, os
 import numpy as np
 
-def imageprepare(frame, sizeh, sizev):
+def imageprepare(frame, max_caracters_width):
     img = cv2.imread(frame,0)
-    img = cv2.resize(img, (sizeh, sizev))
+    img = np.array(img)
+    divider = img.shape[1]/max_caracters_width
+    img = cv2.resize(img, (round(img.shape[1]/divider), round(img.shape[0]/divider)))
     return img
 
 os.chdir(os.path.dirname(__file__))
 
+draw = open("ASCII_ART.txt","w+")
+
 gscale1 = [' ','.',',',':',';','+','*','?','%','S','#','@']
 
-sizeh = 16*20
-sizev = 9*20
+max_caracters_width = 200
+
 ratio = 255/len(gscale1)
 
-path = 'img/guts.jpg'
-frame = imageprepare(path, sizeh, sizev)
+path = 'img/black_knight.png'
+frame = imageprepare(path, max_caracters_width)
 
 
 txt = ''
 
-for i in range(sizev):
-    for j in range(sizeh):
+for i in range(frame.shape[0]):
+    for j in range(frame.shape[1]):
         pixel = int(round(frame[i][j]/ratio))
         txt += gscale1[pixel-1]
 
     print(txt)
+    draw.write(txt+'\n')
     txt = ''
-    
-
 
 
