@@ -16,11 +16,11 @@ os.chdir(os.path.dirname(__file__))
 
 draw = open("ASCII_ART.txt","w+")
 
-gscale1 = [' ','.',',',':',';','+','*','?','%','S','#','@']
+gscale = [' ','.',',',':',';','+','*','?','%','S','#','@']
 
 max_caracters_width = 200
 
-ratio = 255/len(gscale1)
+ratio = 255/len(gscale)
 
 path = 'img/black_knight.png'
 frame = imageprepare(path, max_caracters_width)
@@ -31,9 +31,10 @@ txt = ''
 for i in range(frame.shape[0]):
     for j in range(frame.shape[1]):
         pixel = int(round(frame[i][j]/ratio))
-        txt += gscale1[pixel-1]
-
-    print(txt)
+        txt += gscale[pixel-1]
+        
+    # if you want to print the result in your shell uncomment the line below
+    #print(txt)
     draw.write(txt+'\n')
     txt = ''
 
