@@ -37,5 +37,5 @@ for i in range(frame.shape[0]):
     #print(txt)
     draw.write(txt+'\n')
     txt = ''
-
+print("Finish")
 
